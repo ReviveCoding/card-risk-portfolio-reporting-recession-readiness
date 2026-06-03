@@ -1,0 +1,6 @@
+source_name,source_type,project_use,not_used_for
+FRED DRCCLACBS,public aggregate sample/fallback,credit-card delinquency benchmark alignment,account-level label or bank portfolio microdata
+FRED CORCCACBS,public aggregate sample/fallback,credit-card charge-off benchmark alignment,account-level charge-off record
+Philadelphia Fed Large Bank Credit Card aggregate sample,public aggregate sample/fallback,large-bank card utilization/payment/performance context,FR Y-14M microdata
+UCI Default of Credit Card Clients sample,public account-level benchmark sample/fallback,default-risk modeling benchmark,U.S. consumer-bank production portfolio
+Synthetic account-level card mart,synthetic simulation,"internal-style SQL reporting, bureau-proxy, cross-LOB, review-routing workflow",real customer/bureau/bank decisioning

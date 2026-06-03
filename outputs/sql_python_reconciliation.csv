@@ -1,0 +1,6 @@
+metric,python_recomputed_value,sql_output_value,absolute_delta,tolerance,status
+active_accounts,10000.0,10000.0,0.0,0.0,PASS
+total_balance,74863858.81,74863858.81,0.0,0.07486385881,PASS
+dq30_plus_rate,0.041,0.041,0.0,1e-12,PASS
+dq90_plus_rate,0.0001,0.0001,0.0,1e-12,PASS
+chargeoff_proxy_rate,0.0017,0.0017,0.0,1e-12,PASS

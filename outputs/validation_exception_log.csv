@@ -1,0 +1,13 @@
+rule_name,severity,failed_rows,status,description
+account_month_uniqueness,CRITICAL,0,PASS,One row per account-month in monthly card snapshot.
+bureau_account_month_uniqueness,CRITICAL,0,PASS,One bureau proxy row per account-month.
+negative_balance,CRITICAL,0,PASS,Balances must be nonnegative.
+negative_payment,CRITICAL,0,PASS,Payments must be nonnegative.
+utilization_range,WARNING,0,PASS,Utilization should be in a plausible range.
+payment_ratio_range,WARNING,0,PASS,Payment-to-balance ratio should be within 0 to 1.
+valid_delinquency_bucket,CRITICAL,0,PASS,Delinquency bucket must be in approved set.
+bureau_join_completeness,CRITICAL,0,PASS,All account-month records should join to bureau proxy features.
+macro_month_alignment,CRITICAL,0,PASS,All portfolio months should have macro scenario rows.
+account_master_join,CRITICAL,0,PASS,All snapshot records should join to account master.
+delinquency_transition_validity,WARNING,61,FAIL,CURRENT should not jump directly to CHARGEOFF in one month.
+active_latest_month_population,CRITICAL,0,PASS,Latest month should contain active reporting population.

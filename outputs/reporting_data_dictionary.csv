@@ -1,0 +1,9 @@
+field,definition,source
+DQ30+ rate,"Share of active account-months in DQ30, DQ60, or DQ90 buckets; charge-off proxy is reported separately.",monthly_card_snapshot / SQL reporting
+roll-rate,Transition rate from a prior delinquency bucket to a next-month bucket.,monthly_card_snapshot SQL lag query
+charge-off proxy,Synthetic proxy for accounts in severe delinquency or charge-off state; not real bank loss data.,synthetic portfolio
+bureau_stress_score,"Synthetic bureau-tradeline-style proxy derived from external utilization, inquiries, and external delinquency flag.",bureau_tradeline_proxy
+Credit Health Timestep,Behavior-adjusted account maturity feature inspired by health-state alignment; replaces raw account age in specialty experiments.,CHT module
+risk_capture_recall,Share of default_next_3m outcomes captured by a review queue.,risk-boundary routing
+over_review_rate,Share of reviewed accounts that do not realize the synthetic severe-delinquency target.,risk-boundary routing
+PSI,Population Stability Index comparing baseline and recent feature distributions.,monitoring layer

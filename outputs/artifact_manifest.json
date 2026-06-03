@@ -1,0 +1,674 @@
+[
+  {
+    "path": "outputs\\artifact_manifest.csv",
+    "exists": true,
+    "size_bytes": 8786,
+    "modified_utc": "2026-06-03T14:10:51.620016+00:00"
+  },
+  {
+    "path": "outputs\\backtest_validation_summary.csv",
+    "exists": true,
+    "size_bytes": 3192,
+    "modified_utc": "2026-06-03T14:19:15.308625+00:00"
+  },
+  {
+    "path": "outputs\\baseline_model_metrics.csv",
+    "exists": true,
+    "size_bytes": 859,
+    "modified_utc": "2026-06-03T14:19:01.094207+00:00"
+  },
+  {
+    "path": "outputs\\bureau_overlay_report.csv",
+    "exists": true,
+    "size_bytes": 1651,
+    "modified_utc": "2026-06-03T14:18:57.104464+00:00"
+  },
+  {
+    "path": "outputs\\calibrated_model_metrics.csv",
+    "exists": true,
+    "size_bytes": 255,
+    "modified_utc": "2026-06-03T14:02:46.202008+00:00"
+  },
+  {
+    "path": "outputs\\credit_health_timestep_features.csv",
+    "exists": true,
+    "size_bytes": 12328539,
+    "modified_utc": "2026-06-03T14:19:03.839825+00:00"
+  },
+  {
+    "path": "outputs\\cross_lob_segment_report.csv",
+    "exists": true,
+    "size_bytes": 574,
+    "modified_utc": "2026-06-03T14:18:57.382445+00:00"
+  },
+  {
+    "path": "outputs\\current_review_queue_detail.csv",
+    "exists": true,
+    "size_bytes": 998435,
+    "modified_utc": "2026-06-03T14:19:13.048021+00:00"
+  },
+  {
+    "path": "outputs\\delinquency_bucket_distribution.csv",
+    "exists": true,
+    "size_bytes": 4323,
+    "modified_utc": "2026-06-03T14:18:55.407480+00:00"
+  },
+  {
+    "path": "outputs\\drift_monitoring_summary.csv",
+    "exists": true,
+    "size_bytes": 548,
+    "modified_utc": "2026-06-03T14:19:15.085948+00:00"
+  },
+  {
+    "path": "outputs\\model_ablation_summary.csv",
+    "exists": true,
+    "size_bytes": 1021,
+    "modified_utc": "2026-06-03T14:19:12.038933+00:00"
+  },
+  {
+    "path": "outputs\\portfolio_kpi_monthly.csv",
+    "exists": true,
+    "size_bytes": 2399,
+    "modified_utc": "2026-06-03T14:18:55.257083+00:00"
+  },
+  {
+    "path": "outputs\\public_benchmark_alignment.csv",
+    "exists": true,
+    "size_bytes": 1137,
+    "modified_utc": "2026-06-03T14:18:57.579444+00:00"
+  },
+  {
+    "path": "outputs\\public_benchmark_alignment_summary.csv",
+    "exists": true,
+    "size_bytes": 199,
+    "modified_utc": "2026-06-03T14:19:13.992422+00:00"
+  },
+  {
+    "path": "outputs\\recession_scenario_summary.csv",
+    "exists": true,
+    "size_bytes": 982,
+    "modified_utc": "2026-06-03T14:19:13.653488+00:00"
+  },
+  {
+    "path": "outputs\\reporting_data_dictionary.csv",
+    "exists": true,
+    "size_bytes": 1097,
+    "modified_utc": "2026-06-03T14:19:15.310618+00:00"
+  },
+  {
+    "path": "outputs\\residual_correction_diagnostics.csv",
+    "exists": true,
+    "size_bytes": 686,
+    "modified_utc": "2026-06-03T14:19:09.335444+00:00"
+  },
+  {
+    "path": "outputs\\review_capacity_sensitivity.csv",
+    "exists": true,
+    "size_bytes": 4449,
+    "modified_utc": "2026-06-03T14:19:15.891107+00:00"
+  },
+  {
+    "path": "outputs\\review_queue_comparison.csv",
+    "exists": true,
+    "size_bytes": 588,
+    "modified_utc": "2026-06-03T14:19:12.978916+00:00"
+  },
+  {
+    "path": "outputs\\review_threshold_sensitivity.csv",
+    "exists": true,
+    "size_bytes": 466,
+    "modified_utc": "2026-06-03T14:19:15.891417+00:00"
+  },
+  {
+    "path": "outputs\\risk_decile_calibration.csv",
+    "exists": true,
+    "size_bytes": 491,
+    "modified_utc": "2026-06-03T14:19:00.612971+00:00"
+  },
+  {
+    "path": "outputs\\risk_driver_decomposition.csv",
+    "exists": true,
+    "size_bytes": 6063,
+    "modified_utc": "2026-06-03T14:19:15.007161+00:00"
+  },
+  {
+    "path": "outputs\\roll_rate_matrix.csv",
+    "exists": true,
+    "size_bytes": 428,
+    "modified_utc": "2026-06-03T14:18:55.834590+00:00"
+  },
+  {
+    "path": "outputs\\scenario_sensitivity_checks.csv",
+    "exists": true,
+    "size_bytes": 181,
+    "modified_utc": "2026-06-03T14:19:16.840577+00:00"
+  },
+  {
+    "path": "outputs\\scenario_sensitivity_grid.csv",
+    "exists": true,
+    "size_bytes": 6737,
+    "modified_utc": "2026-06-03T14:19:16.837537+00:00"
+  },
+  {
+    "path": "outputs\\segment_risk_report.csv",
+    "exists": true,
+    "size_bytes": 3116,
+    "modified_utc": "2026-06-03T14:18:56.528227+00:00"
+  },
+  {
+    "path": "outputs\\segment_stability_report.csv",
+    "exists": true,
+    "size_bytes": 642,
+    "modified_utc": "2026-06-03T14:19:15.149766+00:00"
+  },
+  {
+    "path": "outputs\\source_inventory.csv",
+    "exists": true,
+    "size_bytes": 818,
+    "modified_utc": "2026-06-03T14:19:17.120046+00:00"
+  },
+  {
+    "path": "outputs\\sql_python_reconciliation.csv",
+    "exists": true,
+    "size_bytes": 328,
+    "modified_utc": "2026-06-03T14:19:17.119046+00:00"
+  },
+  {
+    "path": "outputs\\tableau_dashboard_extract.csv",
+    "exists": true,
+    "size_bytes": 9651814,
+    "modified_utc": "2026-06-03T14:18:59.565530+00:00"
+  },
+  {
+    "path": "outputs\\validation_exception_log.csv",
+    "exists": true,
+    "size_bytes": 1114,
+    "modified_utc": "2026-06-03T14:19:00.232999+00:00"
+  },
+  {
+    "path": "outputs\\vintage_cohort_report.csv",
+    "exists": true,
+    "size_bytes": 2154,
+    "modified_utc": "2026-06-03T14:18:56.129773+00:00"
+  },
+  {
+    "path": "reports\\backtesting_validation_report.md",
+    "exists": true,
+    "size_bytes": 1745,
+    "modified_utc": "2026-06-03T14:19:15.309620+00:00"
+  },
+  {
+    "path": "reports\\control_matrix.md",
+    "exists": true,
+    "size_bytes": 1880,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\data_dictionary.md",
+    "exists": true,
+    "size_bytes": 2031,
+    "modified_utc": "2026-06-03T14:19:15.310618+00:00"
+  },
+  {
+    "path": "reports\\data_validation_report.md",
+    "exists": true,
+    "size_bytes": 2030,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\executive_risk_summary.md",
+    "exists": true,
+    "size_bytes": 993,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\methodology_note.md",
+    "exists": true,
+    "size_bytes": 1110,
+    "modified_utc": "2026-06-03T14:10:53.773000+00:00"
+  },
+  {
+    "path": "reports\\mock_regulator_response.md",
+    "exists": true,
+    "size_bytes": 928,
+    "modified_utc": "2026-06-03T14:10:53.773000+00:00"
+  },
+  {
+    "path": "reports\\model_card.md",
+    "exists": true,
+    "size_bytes": 988,
+    "modified_utc": "2026-06-03T14:19:15.311619+00:00"
+  },
+  {
+    "path": "reports\\model_validation_report.md",
+    "exists": true,
+    "size_bytes": 1389,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\monitoring_drift_report.md",
+    "exists": true,
+    "size_bytes": 1094,
+    "modified_utc": "2026-06-03T14:19:15.085948+00:00"
+  },
+  {
+    "path": "reports\\monitoring_plan.md",
+    "exists": true,
+    "size_bytes": 770,
+    "modified_utc": "2026-06-03T14:19:15.311619+00:00"
+  },
+  {
+    "path": "reports\\public_benchmark_alignment_report.md",
+    "exists": true,
+    "size_bytes": 605,
+    "modified_utc": "2026-06-03T14:10:53.773000+00:00"
+  },
+  {
+    "path": "reports\\recession_readiness_report.md",
+    "exists": true,
+    "size_bytes": 2290,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\reconciliation_governance_report.md",
+    "exists": true,
+    "size_bytes": 2846,
+    "modified_utc": "2026-06-03T14:10:51.620319+00:00"
+  },
+  {
+    "path": "reports\\release_decision.md",
+    "exists": true,
+    "size_bytes": 72,
+    "modified_utc": "2026-06-03T14:10:53.774080+00:00"
+  },
+  {
+    "path": "reports\\residual_bias_correction_report.md",
+    "exists": true,
+    "size_bytes": 1934,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\responsible_use_and_fair_lending_boundary.md",
+    "exists": true,
+    "size_bytes": 1088,
+    "modified_utc": "2026-06-03T14:10:51.620319+00:00"
+  },
+  {
+    "path": "reports\\review_capacity_sensitivity_report.md",
+    "exists": true,
+    "size_bytes": 9257,
+    "modified_utc": "2026-06-03T14:19:15.891417+00:00"
+  },
+  {
+    "path": "reports\\risk_boundary_review_routing_report.md",
+    "exists": true,
+    "size_bytes": 1290,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\risk_driver_decomposition_report.md",
+    "exists": true,
+    "size_bytes": 3864,
+    "modified_utc": "2026-06-03T14:19:15.007161+00:00"
+  },
+  {
+    "path": "reports\\scenario_sensitivity_report.md",
+    "exists": true,
+    "size_bytes": 3517,
+    "modified_utc": "2026-06-03T14:19:16.842489+00:00"
+  },
+  {
+    "path": "reports\\sql_reporting_pack.md",
+    "exists": true,
+    "size_bytes": 614,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "reports\\tableau_dashboard_spec.md",
+    "exists": true,
+    "size_bytes": 1436,
+    "modified_utc": "2026-06-03T14:10:53.763283+00:00"
+  },
+  {
+    "path": "figures\\calibration_curve.png",
+    "exists": true,
+    "size_bytes": 64336,
+    "modified_utc": "2026-06-03T14:10:52.324334+00:00"
+  },
+  {
+    "path": "figures\\dashboard_portfolio_overview.png",
+    "exists": true,
+    "size_bytes": 57169,
+    "modified_utc": "2026-06-03T14:10:52.688892+00:00"
+  },
+  {
+    "path": "figures\\dashboard_recession_scenario.png",
+    "exists": true,
+    "size_bytes": 95880,
+    "modified_utc": "2026-06-03T14:10:53.073136+00:00"
+  },
+  {
+    "path": "figures\\dashboard_roll_rate.png",
+    "exists": true,
+    "size_bytes": 51601,
+    "modified_utc": "2026-06-03T14:10:52.890208+00:00"
+  },
+  {
+    "path": "figures\\dq_trend.png",
+    "exists": true,
+    "size_bytes": 56626,
+    "modified_utc": "2026-06-03T14:10:51.760160+00:00"
+  },
+  {
+    "path": "figures\\drift_monitoring_psi.png",
+    "exists": true,
+    "size_bytes": 57139,
+    "modified_utc": "2026-06-03T14:10:53.402145+00:00"
+  },
+  {
+    "path": "figures\\fred_chargeoff_vs_synthetic.png",
+    "exists": true,
+    "size_bytes": 72210,
+    "modified_utc": "2026-06-03T14:19:14.366813+00:00"
+  },
+  {
+    "path": "figures\\fred_delinquency_vs_synthetic.png",
+    "exists": true,
+    "size_bytes": 62633,
+    "modified_utc": "2026-06-03T14:19:14.164049+00:00"
+  },
+  {
+    "path": "figures\\recession_scenario_waterfall.png",
+    "exists": true,
+    "size_bytes": 63816,
+    "modified_utc": "2026-06-03T14:19:13.947195+00:00"
+  },
+  {
+    "path": "figures\\residual_correction_error.png",
+    "exists": true,
+    "size_bytes": 28483,
+    "modified_utc": "2026-06-03T14:10:52.441583+00:00"
+  },
+  {
+    "path": "figures\\review_capacity_sensitivity.png",
+    "exists": true,
+    "size_bytes": 109894,
+    "modified_utc": "2026-06-03T14:10:53.605147+00:00"
+  },
+  {
+    "path": "figures\\risk_boundary_tradeoff.png",
+    "exists": true,
+    "size_bytes": 65559,
+    "modified_utc": "2026-06-03T14:10:52.581147+00:00"
+  },
+  {
+    "path": "figures\\risk_decile_default_rate.png",
+    "exists": true,
+    "size_bytes": 64336,
+    "modified_utc": "2026-06-03T14:10:52.272363+00:00"
+  },
+  {
+    "path": "figures\\risk_driver_contribution.png",
+    "exists": true,
+    "size_bytes": 81187,
+    "modified_utc": "2026-06-03T14:10:53.241266+00:00"
+  },
+  {
+    "path": "figures\\roll_rate_heatmap.png",
+    "exists": true,
+    "size_bytes": 41951,
+    "modified_utc": "2026-06-03T14:10:52.020386+00:00"
+  },
+  {
+    "path": "figures\\scenario_sensitivity_grid.png",
+    "exists": true,
+    "size_bytes": 79649,
+    "modified_utc": "2026-06-03T14:10:53.752937+00:00"
+  },
+  {
+    "path": "figures\\vintage_curve.png",
+    "exists": true,
+    "size_bytes": 49695,
+    "modified_utc": "2026-06-03T14:10:52.151053+00:00"
+  },
+  {
+    "path": "sql\\01_create_tables.sql",
+    "exists": true,
+    "size_bytes": 451,
+    "modified_utc": "2026-06-03T04:23:27.521061+00:00"
+  },
+  {
+    "path": "sql\\02_monthly_portfolio_summary.sql",
+    "exists": true,
+    "size_bytes": 913,
+    "modified_utc": "2026-06-03T04:23:27.531060+00:00"
+  },
+  {
+    "path": "sql\\03_delinquency_bucket_distribution.sql",
+    "exists": true,
+    "size_bytes": 407,
+    "modified_utc": "2026-06-03T04:23:27.537915+00:00"
+  },
+  {
+    "path": "sql\\04_roll_rate_matrix.sql",
+    "exists": true,
+    "size_bytes": 619,
+    "modified_utc": "2026-06-03T04:23:27.543914+00:00"
+  },
+  {
+    "path": "sql\\05_vintage_cohort_analysis.sql",
+    "exists": true,
+    "size_bytes": 885,
+    "modified_utc": "2026-06-03T04:23:27.550143+00:00"
+  },
+  {
+    "path": "sql\\06_segment_risk_analysis.sql",
+    "exists": true,
+    "size_bytes": 998,
+    "modified_utc": "2026-06-03T04:23:27.555828+00:00"
+  },
+  {
+    "path": "sql\\07_bureau_tradeline_overlay.sql",
+    "exists": true,
+    "size_bytes": 1012,
+    "modified_utc": "2026-06-03T04:23:27.560828+00:00"
+  },
+  {
+    "path": "sql\\08_cross_lob_relationship_analysis.sql",
+    "exists": true,
+    "size_bytes": 746,
+    "modified_utc": "2026-06-03T04:23:27.563176+00:00"
+  },
+  {
+    "path": "sql\\09_public_benchmark_alignment.sql",
+    "exists": true,
+    "size_bytes": 1524,
+    "modified_utc": "2026-06-03T04:23:27.571343+00:00"
+  },
+  {
+    "path": "sql\\10_tableau_dashboard_extract.sql",
+    "exists": true,
+    "size_bytes": 1136,
+    "modified_utc": "2026-06-03T04:23:27.575407+00:00"
+  },
+  {
+    "path": "src\\__init__.py",
+    "exists": true,
+    "size_bytes": 0,
+    "modified_utc": "2026-06-03T04:23:27.243004+00:00"
+  },
+  {
+    "path": "src\\build_credit_health_timestep.py",
+    "exists": true,
+    "size_bytes": 2435,
+    "modified_utc": "2026-06-03T04:23:27.359934+00:00"
+  },
+  {
+    "path": "src\\build_database.py",
+    "exists": true,
+    "size_bytes": 1385,
+    "modified_utc": "2026-06-03T04:23:27.293622+00:00"
+  },
+  {
+    "path": "src\\calibrate_models.py",
+    "exists": true,
+    "size_bytes": 117,
+    "modified_utc": "2026-06-03T04:23:27.346714+00:00"
+  },
+  {
+    "path": "src\\generate_figures.py",
+    "exists": true,
+    "size_bytes": 8192,
+    "modified_utc": "2026-06-03T04:23:27.425469+00:00"
+  },
+  {
+    "path": "src\\generate_reports.py",
+    "exists": true,
+    "size_bytes": 10981,
+    "modified_utc": "2026-06-03T04:23:27.437588+00:00"
+  },
+  {
+    "path": "src\\generate_synthetic_card_portfolio.py",
+    "exists": true,
+    "size_bytes": 9626,
+    "modified_utc": "2026-06-03T04:23:27.279623+00:00"
+  },
+  {
+    "path": "src\\ingest_public_data.py",
+    "exists": true,
+    "size_bytes": 3293,
+    "modified_utc": "2026-06-03T04:23:27.265153+00:00"
+  },
+  {
+    "path": "src\\run_decision_sensitivity.py",
+    "exists": true,
+    "size_bytes": 6079,
+    "modified_utc": "2026-06-03T04:23:27.478675+00:00"
+  },
+  {
+    "path": "src\\run_operational_backtest.py",
+    "exists": true,
+    "size_bytes": 18378,
+    "modified_utc": "2026-06-03T14:16:00.553736+00:00"
+  },
+  {
+    "path": "src\\run_pipeline.py",
+    "exists": true,
+    "size_bytes": 3207,
+    "modified_utc": "2026-06-03T04:23:27.451683+00:00"
+  },
+  {
+    "path": "src\\run_public_benchmark_alignment.py",
+    "exists": true,
+    "size_bytes": 2289,
+    "modified_utc": "2026-06-03T04:23:27.412161+00:00"
+  },
+  {
+    "path": "src\\run_recession_scenarios.py",
+    "exists": true,
+    "size_bytes": 2751,
+    "modified_utc": "2026-06-03T04:23:27.398141+00:00"
+  },
+  {
+    "path": "src\\run_reconciliation_governance.py",
+    "exists": true,
+    "size_bytes": 5867,
+    "modified_utc": "2026-06-03T04:23:27.507674+00:00"
+  },
+  {
+    "path": "src\\run_residual_bias_correction.py",
+    "exists": true,
+    "size_bytes": 6861,
+    "modified_utc": "2026-06-03T04:23:27.371931+00:00"
+  },
+  {
+    "path": "src\\run_risk_boundary_routing.py",
+    "exists": true,
+    "size_bytes": 3971,
+    "modified_utc": "2026-06-03T04:23:27.385141+00:00"
+  },
+  {
+    "path": "src\\run_risk_driver_monitoring.py",
+    "exists": true,
+    "size_bytes": 12828,
+    "modified_utc": "2026-06-03T04:23:27.464675+00:00"
+  },
+  {
+    "path": "src\\run_scenario_sensitivity.py",
+    "exists": true,
+    "size_bytes": 3899,
+    "modified_utc": "2026-06-03T04:23:27.492675+00:00"
+  },
+  {
+    "path": "src\\run_sql_reporting_pack.py",
+    "exists": true,
+    "size_bytes": 1771,
+    "modified_utc": "2026-06-03T04:23:27.307622+00:00"
+  },
+  {
+    "path": "src\\train_baseline_models.py",
+    "exists": true,
+    "size_bytes": 4950,
+    "modified_utc": "2026-06-03T04:23:27.335351+00:00"
+  },
+  {
+    "path": "src\\utils.py",
+    "exists": true,
+    "size_bytes": 1786,
+    "modified_utc": "2026-06-03T04:23:27.254155+00:00"
+  },
+  {
+    "path": "src\\validate_data_quality.py",
+    "exists": true,
+    "size_bytes": 3568,
+    "modified_utc": "2026-06-03T04:23:27.321707+00:00"
+  },
+  {
+    "path": "tests\\test_dashboard_artifacts.py",
+    "exists": true,
+    "size_bytes": 658,
+    "modified_utc": "2026-06-03T04:23:27.654880+00:00"
+  },
+  {
+    "path": "tests\\test_data_shapes.py",
+    "exists": true,
+    "size_bytes": 985,
+    "modified_utc": "2026-06-03T04:23:27.608368+00:00"
+  },
+  {
+    "path": "tests\\test_model_and_specialty_layers.py",
+    "exists": true,
+    "size_bytes": 1063,
+    "modified_utc": "2026-06-03T04:23:27.632365+00:00"
+  },
+  {
+    "path": "tests\\test_monitoring_and_governance.py",
+    "exists": true,
+    "size_bytes": 1689,
+    "modified_utc": "2026-06-03T04:23:27.669860+00:00"
+  },
+  {
+    "path": "tests\\test_outputs.py",
+    "exists": true,
+    "size_bytes": 1955,
+    "modified_utc": "2026-06-03T04:23:27.594856+00:00"
+  },
+  {
+    "path": "tests\\test_reconciliation_and_sensitivity.py",
+    "exists": true,
+    "size_bytes": 2213,
+    "modified_utc": "2026-06-03T04:23:27.683982+00:00"
+  },
+  {
+    "path": "tests\\test_reporting_outputs.py",
+    "exists": true,
+    "size_bytes": 1162,
+    "modified_utc": "2026-06-03T04:23:27.620366+00:00"
+  },
+  {
+    "path": "tests\\test_scenarios_and_release.py",
+    "exists": true,
+    "size_bytes": 928,
+    "modified_utc": "2026-06-03T04:23:27.642129+00:00"
+  }
+]

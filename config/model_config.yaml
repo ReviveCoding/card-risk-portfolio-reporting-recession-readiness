@@ -1,0 +1,17 @@
+models:
+  test_size: 0.30
+  review_capacity_rate: 0.10
+  random_seed: 42
+  calibration_method: sigmoid
+  credit_health_timestep:
+    max_shift_months: 12
+    min_shift_months: -6
+    utilization_weight: 0.35
+    payment_weight: 0.25
+    delinquency_weight: 0.20
+    bureau_weight: 0.15
+    macro_weight: 0.05
+  asymmetric_risk_boundary:
+    near_threshold_band: 0.05
+    weak_signal_min_count: 2
+    deflation_keep_rate: 0.75

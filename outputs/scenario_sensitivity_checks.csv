@@ -1,0 +1,5 @@
+dimension,monotonic_loss_pass,points_checked
+unemployment_shock_pp,True,4
+utilization_multiplier,True,3
+bureau_stress_multiplier,True,3
+payment_ratio_multiplier_inverse,True,3

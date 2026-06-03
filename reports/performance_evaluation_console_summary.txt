@@ -1,0 +1,76 @@
+
+===== outputs/baseline_model_metrics.csv =====
+
+                                    model  roc_auc   pr_auc    brier          ece  precision_at_top10pct  default_capture_at_top10pct      mae
+                   M0 Logistic Regression 0.691685 0.332151 0.220454 2.757169e-01               0.391667                     0.214123 0.437728
+        M1 Calibrated Logistic Regression 0.691685 0.332151 0.138764 2.146524e-02               0.391667                     0.214123 0.281515
+                          M2 RandomForest 0.686941 0.332270 0.139004 2.295576e-02               0.391667                     0.214123 0.279835
+      M3 Static Roll-Rate Markov Baseline 0.945562 0.779744 0.006941 3.343969e-18               0.235000                     0.898089 0.013882
+M4 Segment-Conditioned Roll-Rate Baseline 0.964455 0.811844 0.006777 1.202742e-18               0.241667                     0.923567 0.013555
+
+
+
+===== outputs/calibrated_model_metrics.csv =====
+
+                          version  roc_auc   pr_auc    brier      ece  precision_at_top10pct  default_capture_at_top10pct      mae
+M1 Calibrated Logistic Regression 0.691685 0.332151 0.138764 0.021465               0.391667                     0.214123 0.281515
+
+
+
+===== outputs/model_ablation_summary.csv =====
+
+                                  version  roc_auc   pr_auc    brier          ece  precision_at_top10pct  default_capture_at_top10pct      mae
+                   M0 Logistic Regression 0.691685 0.332151 0.220454 2.757169e-01               0.391667                     0.214123 0.437728
+        M1 Calibrated Logistic Regression 0.691685 0.332151 0.138764 2.146524e-02               0.391667                     0.214123 0.281515
+                          M2 RandomForest 0.686941 0.332270 0.139004 2.295576e-02               0.391667                     0.214123 0.279835
+      M3 Static Roll-Rate Markov Baseline 0.945562 0.779744 0.006941 3.343969e-18               0.235000                     0.898089 0.013882
+M4 Segment-Conditioned Roll-Rate Baseline 0.964455 0.811844 0.006777 1.202742e-18               0.241667                     0.923567 0.013555
+              V5 Residual Bias Correction 0.994550 0.666667 0.008717 1.107712e-02               0.213333                     1.000000 0.016650
+
+
+
+===== outputs/review_capacity_sensitivity.csv =====
+
+                           strategy  capacity_rate  review_queue_size  review_rate  review_precision  risk_capture_recall  risk_review_f1  exposure_weighted_recall  false_safe_rate  over_review_rate  expected_loss_proxy_capture
+              baseline_pd_threshold           0.05                 25        0.050          0.640000                  1.0        0.780488                       1.0              0.0          0.360000                 18267.692473
+       residual_corrected_threshold           0.05                 25        0.050          0.640000                  1.0        0.780488                       1.0              0.0          0.360000                 18267.692473
+             inflated_risk_boundary           0.05                107        0.214          0.149533                  1.0        0.260163                       1.0              0.0          0.850467                 19861.077164
+asymmetric_risk_boundary_correction           0.05                 25        0.050          0.640000                  1.0        0.780488                       1.0              0.0          0.360000                 18267.692473
+       stress_weighted_review_queue           0.05                 31        0.062          0.516129                  1.0        0.680851                       1.0              0.0          0.483871                 17603.222504
+              baseline_pd_threshold           0.10                117        0.234          0.136752                  1.0        0.240602                       1.0              0.0          0.863248                 19522.939429
+       residual_corrected_threshold           0.10                117        0.234          0.136752                  1.0        0.240602                       1.0              0.0          0.863248                 19522.939429
+             inflated_risk_boundary           0.10                176        0.352          0.090909                  1.0        0.166667                       1.0              0.0          0.909091                 20602.029319
+asymmetric_risk_boundary_correction           0.10                 50        0.100          0.320000                  1.0        0.484848                       1.0              0.0          0.680000                 18675.962147
+       stress_weighted_review_queue           0.10                 50        0.100          0.320000                  1.0        0.484848                       1.0              0.0          0.680000                 18546.946246
+
+
+
+===== outputs/public_benchmark_alignment.csv =====
+
+quarter  synthetic_dq30_plus_pct  fred_delinquency_rate_pct  delinquency_alignment_abs_error  synthetic_chargeoff_proxy_pct  fred_chargeoff_rate_pct  chargeoff_alignment_abs_error  synthetic_avg_utilization  phillyfed_avg_utilization_rate  synthetic_payment_rate  phillyfed_payment_rate
+ 2024Q1                   2.0000                       2.88                           0.8800                         4.5707                     4.05                         0.5207                     0.2983                        0.241900                  0.2764                0.279262
+ 2024Q2                   3.0667                       2.98                           0.0867                         4.4922                     4.35                         0.1422                     0.3349                        0.233791                  0.2678                0.277133
+ 2024Q3                   3.7333                       3.08                           0.6533                         4.4676                     4.55                         0.0824                     0.3763                        0.235451                  0.2646                0.275875
+ 2024Q4                   3.0000                       3.12                           0.1200                         4.4464                     4.62                         0.1736                     0.4196                        0.236328                  0.2556                0.276819
+
+
+
+===== outputs/scenario_sensitivity_checks.csv =====
+
+                       dimension  monotonic_loss_pass  points_checked
+           unemployment_shock_pp                 True               4
+          utilization_multiplier                 True               3
+        bureau_stress_multiplier                 True               3
+payment_ratio_multiplier_inverse                 True               3
+
+
+
+===== outputs/sql_python_reconciliation.csv =====
+
+              metric  python_recomputed_value  sql_output_value  absolute_delta    tolerance status
+     active_accounts                  500.000           500.000             0.0 0.000000e+00   PASS
+       total_balance              2896653.160       2896653.160             0.0 2.896653e-03   PASS
+      dq30_plus_rate                    0.028             0.028             0.0 1.000000e-12   PASS
+      dq90_plus_rate                    0.000             0.000             0.0 1.000000e-12   PASS
+chargeoff_proxy_rate                    0.000             0.000             0.0 1.000000e-12   PASS
+

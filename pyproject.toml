@@ -1,0 +1,9 @@
+[project]
+name = "card-risk-portfolio-reporting-recession-readiness"
+version = "0.1.0"
+description = "SQL-first card-risk reporting and recession-readiness analytics framework"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

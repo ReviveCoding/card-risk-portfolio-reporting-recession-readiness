@@ -1,0 +1,78 @@
+
+===== outputs/baseline_model_metrics.csv =====
+
+                                    model  roc_auc   pr_auc    brier          ece  precision_at_top10pct  default_capture_at_top10pct      mae
+                   M0 Logistic Regression 0.691685 0.332151 0.220454 2.757169e-01               0.391667                     0.214123 0.437728
+        M1 Calibrated Logistic Regression 0.691685 0.332151 0.138764 2.146524e-02               0.391667                     0.214123 0.281515
+                          M2 RandomForest 0.686941 0.332270 0.139004 2.295576e-02               0.391667                     0.214123 0.279835
+      M3 Static Roll-Rate Markov Baseline 0.979266 0.880035 0.006196 4.505655e-18               0.373458                     0.965113 0.012392
+M4 Segment-Conditioned Roll-Rate Baseline 0.981589 0.893579 0.006189 6.476301e-20               0.373542                     0.965328 0.012378
+
+
+
+===== outputs/model_ablation_summary.csv =====
+
+                                  version  roc_auc   pr_auc    brier          ece  precision_at_top10pct  default_capture_at_top10pct      mae
+                   M0 Logistic Regression 0.691685 0.332151 0.220454 2.757169e-01               0.391667                     0.214123 0.437728
+        M1 Calibrated Logistic Regression 0.691685 0.332151 0.138764 2.146524e-02               0.391667                     0.214123 0.281515
+                          M2 RandomForest 0.686941 0.332270 0.139004 2.295576e-02               0.391667                     0.214123 0.279835
+      M3 Static Roll-Rate Markov Baseline 0.979266 0.880035 0.006196 4.505655e-18               0.373458                     0.965113 0.012392
+M4 Segment-Conditioned Roll-Rate Baseline 0.981589 0.893579 0.006189 6.476301e-20               0.373542                     0.965328 0.012378
+              V5 Residual Bias Correction 0.984128 0.790093 0.011734 6.772602e-03               0.432333                     0.978130 0.019274
+
+
+
+===== outputs/review_capacity_sensitivity.csv =====
+
+                           strategy  capacity_rate  review_queue_size  review_rate  review_precision  risk_capture_recall  risk_review_f1  exposure_weighted_recall  false_safe_rate  over_review_rate  expected_loss_proxy_capture
+              baseline_pd_threshold           0.05                502       0.0502          1.000000             0.931354        0.964457                  0.786910         0.068646          0.000000                 9.058077e+05
+       residual_corrected_threshold           0.05                502       0.0502          1.000000             0.931354        0.964457                  0.786910         0.068646          0.000000                 9.058077e+05
+             inflated_risk_boundary           0.05                502       0.0502          1.000000             0.931354        0.964457                  0.786910         0.068646          0.000000                 9.058077e+05
+asymmetric_risk_boundary_correction           0.05                500       0.0500          1.000000             0.927644        0.962464                  0.786170         0.072356          0.000000                 9.049611e+05
+       stress_weighted_review_queue           0.05                504       0.0504          1.000000             0.935065        0.966443                  0.799549         0.064935          0.000000                 9.186707e+05
+              baseline_pd_threshold           0.10               2550       0.2550          0.210196             0.994434        0.347038                  0.988915         0.005566          0.789804                 1.258793e+06
+       residual_corrected_threshold           0.10               2550       0.2550          0.210196             0.994434        0.347038                  0.988915         0.005566          0.789804                 1.258793e+06
+             inflated_risk_boundary           0.10               3501       0.3501          0.153385             0.996289        0.265842                  0.997369         0.003711          0.846615                 1.275290e+06
+asymmetric_risk_boundary_correction           0.10               1000       0.1000          0.536000             0.994434        0.696556                  0.988915         0.005566          0.464000                 1.248979e+06
+       stress_weighted_review_queue           0.10               1000       0.1000          0.525000             0.974026        0.682261                  0.922681         0.025974          0.475000                 1.097997e+06
+              baseline_pd_threshold           0.15               2550       0.2550          0.210196             0.994434        0.347038                  0.988915         0.005566          0.789804                 1.258793e+06
+       residual_corrected_threshold           0.15               2550       0.2550          0.210196             0.994434        0.347038                  0.988915         0.005566          0.789804                 1.258793e+06
+             inflated_risk_boundary           0.15               3501       0.3501          0.153385             0.996289        0.265842                  0.997369         0.003711          0.846615                 1.275290e+06
+asymmetric_risk_boundary_correction           0.15               1500       0.1500          0.357333             0.994434        0.525748                  0.988915         0.005566          0.642667                 1.252194e+06
+       stress_weighted_review_queue           0.15               1576       0.1576          0.338832             0.990724        0.504965                  0.976987         0.009276          0.661168                 1.216927e+06
+
+
+
+===== outputs/public_benchmark_alignment.csv =====
+
+quarter  synthetic_dq30_plus_pct  fred_delinquency_rate_pct  delinquency_alignment_abs_error  synthetic_chargeoff_proxy_pct  fred_chargeoff_rate_pct  chargeoff_alignment_abs_error  synthetic_avg_utilization  phillyfed_avg_utilization_rate  synthetic_payment_rate  phillyfed_payment_rate
+ 2024Q1                   3.0767                       2.88                           0.1967                         4.6892                     4.05                         0.6392                     0.3049                        0.241900                  0.2761                0.279262
+ 2024Q2                   3.0767                       2.98                           0.0967                         4.4610                     4.35                         0.1110                     0.3409                        0.233791                  0.2690                0.277133
+ 2024Q3                   3.0667                       3.08                           0.0133                         4.4294                     4.55                         0.1206                     0.3829                        0.235451                  0.2620                0.275875
+ 2024Q4                   3.0867                       3.12                           0.0333                         4.4407                     4.62                         0.1793                     0.4271                        0.236328                  0.2560                0.276819
+ 2025Q1                   3.4433                       3.06                           0.3833                         4.4560                     4.46                         0.0040                     0.4706                        0.244131                  0.2513                0.272561
+ 2025Q2                   3.9100                       3.04                           0.8700                         4.4702                     4.21                         0.2602                     0.5098                        0.248266                  0.2473                0.272716
+ 2025Q3                   4.0400                       2.98                           1.0600                         4.4778                     4.15                         0.3278                     0.5447                        0.245378                  0.2437                0.268604
+ 2025Q4                   4.1033                       2.94                           1.1633                         4.4929                     4.07                         0.4229                     0.5757                        0.244556                  0.2404                0.267823
+
+
+
+===== outputs/scenario_sensitivity_checks.csv =====
+
+                       dimension  monotonic_loss_pass  points_checked
+           unemployment_shock_pp                 True               4
+          utilization_multiplier                 True               3
+        bureau_stress_multiplier                 True               3
+payment_ratio_multiplier_inverse                 True               3
+
+
+
+===== outputs/sql_python_reconciliation.csv =====
+
+              metric  python_recomputed_value  sql_output_value  absolute_delta    tolerance status
+     active_accounts             1.000000e+04      1.000000e+04             0.0 0.000000e+00   PASS
+       total_balance             7.365715e+07      7.365715e+07             0.0 7.365715e-02   PASS
+      dq30_plus_rate             4.090000e-02      4.090000e-02             0.0 1.000000e-12   PASS
+      dq90_plus_rate             0.000000e+00      0.000000e+00             0.0 1.000000e-12   PASS
+chargeoff_proxy_rate             1.800000e-03      1.800000e-03             0.0 1.000000e-12   PASS
+

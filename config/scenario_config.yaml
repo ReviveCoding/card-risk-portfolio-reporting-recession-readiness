@@ -1,0 +1,36 @@
+scenarios:
+  baseline:
+    unemployment_shock_pp: 0.0
+    utilization_multiplier: 1.00
+    payment_ratio_multiplier: 1.00
+    bureau_stress_multiplier: 1.00
+  mild_recession:
+    unemployment_shock_pp: 1.0
+    utilization_multiplier: 1.05
+    payment_ratio_multiplier: 0.95
+    bureau_stress_multiplier: 1.10
+  severe_recession:
+    unemployment_shock_pp: 2.5
+    utilization_multiplier: 1.12
+    payment_ratio_multiplier: 0.90
+    bureau_stress_multiplier: 1.25
+  high_utilization_stress:
+    unemployment_shock_pp: 0.5
+    utilization_multiplier: 1.18
+    payment_ratio_multiplier: 0.96
+    bureau_stress_multiplier: 1.10
+  payment_deterioration_stress:
+    unemployment_shock_pp: 0.8
+    utilization_multiplier: 1.05
+    payment_ratio_multiplier: 0.82
+    bureau_stress_multiplier: 1.15
+  combined_tail_stress:
+    unemployment_shock_pp: 3.2
+    utilization_multiplier: 1.22
+    payment_ratio_multiplier: 0.80
+    bureau_stress_multiplier: 1.40
+release_thresholds:
+  max_critical_validation_failures: 0
+  max_ece_review: 0.15
+  max_public_benchmark_alignment_mae: 2.0
+  require_scenario_monotonicity: true

@@ -1,0 +1,12 @@
+project:
+  random_seed: 42
+  database_backend: auto
+  database_path: card_risk.db
+  default_accounts: 2000
+  default_months: 15
+  test_accounts: 500
+  test_months: 12
+  start_month: "2024-01"
+  review_capacity_rate: 0.10
+  use_sample_public_data: true
+  claim_boundary: "offline public-benchmark and synthetic account-level simulation"

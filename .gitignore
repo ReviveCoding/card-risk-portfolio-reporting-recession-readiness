@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Local generated database artifacts
+card_risk.db
+card_risk.duckdb
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+card_risk.db
+*.duckdb
+data/processed/*.csv
+data/processed/*.parquet
+data/synthetic/*.csv
+.venv/
+__pycache__/
+.pytest_cache/
+
+outputs/operational_backtest_predictions.csv
+outputs/credit_health_timestep_features.csv
+outputs/tableau_dashboard_extract.csv
