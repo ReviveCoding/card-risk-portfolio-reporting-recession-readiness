@@ -50,9 +50,47 @@ def fmt(x, digits=3):
     except Exception:
         return str(x)
 
+def get_exact_arbc_row(review_df):
+    if review_df.empty:
+        return pd.Series(dtype="object")
+
+    strategy = find_col(review_df, ["strategy", "method"])
+    cap = find_col(review_df, ["capacity_rate", "capacity"])
+
+    if not strategy or not cap:
+        return pd.Series(dtype="object")
+
+    cap_num = pd.to_numeric(review_df[cap], errors="coerce")
+    r10 = review_df[cap_num.between(0.095, 0.105)].copy()
+
+    exact = r10[r10[strategy].astype(str).str.lower().eq("asymmetric_risk_boundary_correction")]
+    if not exact.empty:
+        return exact.iloc[0]
+
+    contains_asym = r10[r10[strategy].astype(str).str.contains("asymmetric", case=False, regex=False)]
+    if not contains_asym.empty:
+        return contains_asym.iloc[0]
+
+    return pd.Series(dtype="object")
+
+def add_metric_from_evidence(metrics, evidence_df, metric_name, label=None):
+    if evidence_df.empty:
+        return False
+    if "section" not in evidence_df.columns or "metric" not in evidence_df.columns or "method_value" not in evidence_df.columns:
+        return False
+    rows = evidence_df[
+        (evidence_df["section"].astype(str) == "review_routing_10pct")
+        & (evidence_df["metric"].astype(str) == metric_name)
+    ]
+    if rows.empty:
+        return False
+    metrics.append((label or metric_name, fmt(rows.iloc[0]["method_value"])))
+    return True
+
 ablation = read_csv(OUT / "model_ablation_summary.csv")
 review = read_csv(OUT / "review_capacity_sensitivity.csv")
 op = read_csv(OUT / "operational_retraining_summary.csv")
+evidence = read_csv(OUT / "resume_evidence_metrics.csv")
 
 sections = []
 metrics = []
@@ -82,11 +120,11 @@ if not ablation.empty:
             b = base.iloc[0]
             s = spec.iloc[0]
             if pr:
-                metrics.append(("PR-AUC", f"{fmt(b[pr])} → {fmt(s[pr])}"))
+                metrics.append(("PR-AUC", f"{fmt(b[pr])} -> {fmt(s[pr])}"))
             if roc:
-                metrics.append(("ROC-AUC", f"{fmt(b[roc])} → {fmt(s[roc])}"))
+                metrics.append(("ROC-AUC", f"{fmt(b[roc])} -> {fmt(s[roc])}"))
             if capture:
-                metrics.append(("Top-10% Default Capture", f"{fmt(b[capture])} → {fmt(s[capture])}"))
+                metrics.append(("Top-10% Default Capture", f"{fmt(b[capture])} -> {fmt(s[capture])}"))
 
 # Review capacity
 if not review.empty:
@@ -104,16 +142,20 @@ if not review.empty:
             )
             sections.append(fig_html(f"Review Capacity: {metric}", fig))
 
-        r10 = review[pd.to_numeric(review[cap], errors="coerce").between(0.095, 0.105)]
-        arbc = r10[r10[strategy].astype(str).str.contains("asymmetric|arbc|boundary", case=False, regex=True)] if not r10.empty else pd.DataFrame()
+        # Prefer resume_evidence_metrics.csv because it stores the validated resume-safe ARBC comparison.
+        added_f1 = add_metric_from_evidence(metrics, evidence, "Risk-Review F1", "10% Review F1")
+        added_precision = add_metric_from_evidence(metrics, evidence, "Review Precision", "10% Review Precision")
+        added_recall = add_metric_from_evidence(metrics, evidence, "Risk Capture Recall", "Risk-Capture Recall")
+
+        # Fallback to exact ARBC row only. Do not match inflated_risk_boundary.
+        arbc = get_exact_arbc_row(review)
         if not arbc.empty:
-            row = arbc.iloc[0]
-            if f1:
-                metrics.append(("10% Review F1", fmt(row[f1])))
-            if precision:
-                metrics.append(("10% Review Precision", fmt(row[precision])))
-            if recall:
-                metrics.append(("Risk-Capture Recall", fmt(row[recall])))
+            if f1 and not added_f1:
+                metrics.append(("10% Review F1", fmt(arbc[f1])))
+            if precision and not added_precision:
+                metrics.append(("10% Review Precision", fmt(arbc[precision])))
+            if recall and not added_recall:
+                metrics.append(("Risk-Capture Recall", fmt(arbc[recall])))
 
 # Operational retraining
 if not op.empty:

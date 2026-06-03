@@ -9,17 +9,17 @@ This dashboard artifact supports credit-card risk reporting, portfolio monitorin
 
 ## Executive KPI Summary
 
-| Metric                   | Value         |
-|:-------------------------|:--------------|
-| PR-AUC                   | 0.332 → 0.896 |
-| ROC-AUC                  | 0.692 → 0.982 |
-| Top-10% Default Capture  | 0.214 → 0.967 |
-| 10% Review F1            | 0.272         |
-| 10% Review Precision     | 0.158         |
-| Risk-Capture Recall      | 0.996         |
-| Quarterly Avg PR-AUC     | 0.901         |
-| Quarterly Avg ROC-AUC    | 0.948         |
-| Quarterly Retrain Events | 2             |
+| Metric                   | Value          |
+|:-------------------------|:---------------|
+| PR-AUC                   | 0.332 -> 0.896 |
+| ROC-AUC                  | 0.692 -> 0.982 |
+| Top-10% Default Capture  | 0.214 -> 0.967 |
+| 10% Review F1            | 0.707          |
+| 10% Review Precision     | 0.548          |
+| Risk-Capture Recall      | 0.995          |
+| Quarterly Avg PR-AUC     | 0.901          |
+| Quarterly Avg ROC-AUC    | 0.948          |
+| Quarterly Retrain Events | 2              |
 
 ## Views Included
 
