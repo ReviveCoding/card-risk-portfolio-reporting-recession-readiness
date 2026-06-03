@@ -1,0 +1,12 @@
+section,metric,baseline,baseline_value,method,method_value,absolute_change,relative_change_pct,direction
+model_ablation,ROC-AUC,M0 Logistic,0.6916848941605034,M4 Segment-Conditioned Roll-Rate,0.9816524445914996,0.2899675504309962,41.92191457107492,improvement
+model_ablation,PR-AUC,M0 Logistic,0.3321506387765341,M4 Segment-Conditioned Roll-Rate,0.8958148593561228,0.5636642205795888,169.7013808721932,improvement
+model_ablation,Brier,M0 Logistic,0.2204540874746134,M4 Segment-Conditioned Roll-Rate,0.0061900293451569,0.2142640581294565,97.19214580411456,reduction
+model_ablation,Default Capture@Top10%,M0 Logistic,0.214123006833713,M4 Segment-Conditioned Roll-Rate,0.9671732522796352,0.7530502454459223,351.6904869688934,improvement
+model_ablation,MAE,M0 Logistic,0.4377282103297902,M4 Segment-Conditioned Roll-Rate,0.0123800586903139,0.4253481516394763,97.17174758259547,reduction
+residual_correction,ROC-AUC,M4 Segment-Conditioned Roll-Rate,0.9816524445914996,V5 Residual Bias Correction,0.983275897571947,0.0016234529804474152,0.1653796095952261,improvement
+residual_correction,Default Capture@Top10%,M4 Segment-Conditioned Roll-Rate,0.9671732522796352,V5 Residual Bias Correction,0.9774343122102008,0.010261059930565586,1.06093297207922,improvement
+review_routing_10pct,Review Precision,Baseline PD Threshold,0.2147335423197492,ARBC Routing,0.548,0.33326645768025087,155.20000000000005,improvement
+review_routing_10pct,Risk-Review F1,Baseline PD Threshold,0.353206574282952,ARBC Routing,0.706640876853643,0.353434302570691,100.06447453255967,improvement
+review_routing_10pct,Over-Review Rate,Baseline PD Threshold,0.7852664576802508,ARBC Routing,0.452,0.3332664576802508,42.43992015968064,reduction
+review_routing_10pct,Risk Capture Recall,Baseline PD Threshold,0.9945553539019965,ARBC Routing,0.9945553539019965,0.0,0.0,improvement
