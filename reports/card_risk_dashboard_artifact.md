@@ -32,6 +32,6 @@ This dashboard artifact supports credit-card risk reporting, portfolio monitorin
 
 This is a synthetic/offline and public-data-aligned reporting artifact. It does not use proprietary bank data, real cardholder data, proprietary bureau microdata, JPMC internal systems, or deployed banking decisioning.
 
-## Resume-Safe Wording
+## Evaluation Interpretation
 
 Compared static, quarterly, and drift-triggered retraining in an 18-month train / 6-month holdout backtest, selecting quarterly retraining with avg PR-AUC 0.901 and avg ROC-AUC 0.948, and packaged dashboard-ready artifacts for portfolio trends, recession scenarios, and review-capacity tradeoffs.

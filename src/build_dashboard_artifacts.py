@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 from datetime import datetime
 import pandas as pd
 import plotly.express as px
@@ -90,7 +90,7 @@ def add_metric_from_evidence(metrics, evidence_df, metric_name, label=None):
 ablation = read_csv(OUT / "model_ablation_summary.csv")
 review = read_csv(OUT / "review_capacity_sensitivity.csv")
 op = read_csv(OUT / "operational_retraining_summary.csv")
-evidence = read_csv(OUT / "resume_evidence_metrics.csv")
+evidence = read_csv(OUT / "model_comparison_metrics.csv")
 
 sections = []
 metrics = []
@@ -142,7 +142,7 @@ if not review.empty:
             )
             sections.append(fig_html(f"Review Capacity: {metric}", fig))
 
-        # Prefer resume_evidence_metrics.csv because it stores the validated resume-safe ARBC comparison.
+        # Prefer model_comparison_metrics.csv because it stores the validated ARBC comparison.
         added_f1 = add_metric_from_evidence(metrics, evidence, "Risk-Review F1", "10% Review F1")
         added_precision = add_metric_from_evidence(metrics, evidence, "Review Precision", "10% Review Precision")
         added_recall = add_metric_from_evidence(metrics, evidence, "Risk Capture Recall", "Risk-Capture Recall")
@@ -191,8 +191,8 @@ inventory_paths = [
     OUT / "model_ablation_summary.csv",
     OUT / "review_capacity_sensitivity.csv",
     OUT / "operational_retraining_summary.csv",
-    OUT / "resume_evidence_metrics.csv",
-    REPORTS / "resume_evidence_summary.md",
+    OUT / "model_comparison_metrics.csv",
+    REPORTS / "model_comparison_summary.md",
     REPORTS / "operational_backtest_report.md",
     REPORTS / "card_risk_dashboard_artifact.md",
 ]
@@ -281,9 +281,9 @@ This dashboard artifact supports credit-card risk reporting, portfolio monitorin
 
 This is a synthetic/offline and public-data-aligned reporting artifact. It does not use proprietary bank data, real cardholder data, proprietary bureau microdata, JPMC internal systems, or deployed banking decisioning.
 
-## Resume-Safe Wording
+## Evaluation Interpretation
 
-Compared static, quarterly, and drift-triggered retraining in an 18-month train / 6-month holdout backtest, selecting quarterly retraining with avg PR-AUC 0.901 and avg ROC-AUC 0.948, and packaged dashboard-ready artifacts for portfolio trends, recession scenarios, and review-capacity tradeoffs.
+Offline 18-month training and 6-month holdout comparison of static, quarterly and drift-triggered retraining. Quarterly selection reflects validation metrics only, not deployed portfolio performance.
 """
 
 MD_OUT.write_text(md, encoding="utf-8")

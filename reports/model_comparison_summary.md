@@ -1,6 +1,6 @@
-# Resume Evidence Summary
+# Model Comparison and Operating Evaluation
 
-This report summarizes baseline-vs-specialty improvements for resume and interview use. All claims are bounded to offline synthetic/public-benchmark-aligned data.
+This report compares model baselines, review routing, and retraining policies under offline evaluation. All claims are bounded to offline synthetic/public-benchmark-aligned data.
 
 ## Model Ablation: Baseline vs Card-Risk Specialty Method
 
@@ -46,14 +46,9 @@ Note: residual bias correction improved ranking/top-risk capture, but it should 
 Recommended operating policy: quarterly retraining, because it achieved avg PR-AUC 0.901, avg ROC-AUC 0.948, avg Brier 0.0338, with only 2 retraining events across the 6-month holdout.
 
 
-## Resume-Safe Bullets
+## Interpretation and Limitations
 
-
-- Built a SQL-first card-risk reporting and recession-readiness framework with segment-conditioned roll-rate modeling, public benchmark alignment, SQL/Python reconciliation, and review-capacity routing; improved PR-AUC from 0.332 to 0.894, ROC-AUC from 0.692 to 0.982, and top-10% default capture from 0.214 to 0.965 versus a logistic baseline under synthetic/offline validation.
-
-- Added ARBC review routing and operational backtesting over a 10,000-account synthetic card portfolio, improving 10% review-capacity F1 from 0.347 to 0.697 and precision from 0.210 to 0.536 while maintaining 0.994 risk-capture recall.
-
-- Compared static, quarterly, and drift-triggered retraining in an 18-month train / 6-month holdout backtest, selecting quarterly retraining as the practical operating policy with avg PR-AUC 0.901, avg ROC-AUC 0.948, and only 2 retraining events.
+Model and policy comparisons are offline, synthetic or public-benchmark-aligned. Residual correction is not uniformly better across metrics; operational results are not deployed outcomes.
 
 
 ## Claim Boundary
