@@ -96,19 +96,12 @@ make clean    # remove generated outputs, figures, reports, processed data, and 
 - `figures/review_capacity_sensitivity.png`
 - `figures/scenario_sensitivity_grid.png`
 
-## Suggested resume bullets
-
-- Built a SQL-first, public-data-augmented card-risk portfolio reporting and recession-readiness framework combining Federal Reserve/FRED credit-card delinquency and charge-off benchmarks, Philadelphia Fed large-bank aggregate card indicators, UCI public default-risk modeling data, and synthetic account-level card marts for delinquency migration, roll-rate, charge-off proxy, vintage/cohort, bureau-proxy, and high-risk segment analysis.
-- Enhanced vanilla risk baselines with calibrated default modeling, segment-conditioned roll-rate diagnostics, validation-shrunk residual bias correction, credit-health timestep features inspired by health-state alignment research, and asymmetric risk-boundary review routing, improving review-queue precision/F1 while documenting calibration, benchmark-alignment, and release-gate controls.
-
 ## Latest verified run
 
 - Full pipeline: `make run` completed successfully.
 - Tests: `30 passed` in the latest reinforced release; the second reinforcement adds SQL/Python reconciliation, source-inventory, review-capacity sensitivity, scenario-sensitivity, responsible-use, and artifact-manifest tests.
 - Release gate: `PASS` in the generated sample/fallback run.
 - Public benchmark alignment: delinquency and charge-off proxy checks both passed the configured plausibility threshold.
-
-
 
 ## Local and GitHub runnable checks
 
@@ -118,8 +111,7 @@ make clean    # remove generated outputs, figures, reports, processed data, and 
 - `reports/small_data_validation_report.md` records a separate 500-account x 12-month smoke validation.
 - `.gitignore` excludes Python cache files and local database artifacts.
 
-
-## Second reinforcement loop additions
+## Additional validation controls
 
 The latest reinforcement adds:
 
@@ -131,4 +123,4 @@ The latest reinforcement adds:
 - Artifact manifest in CSV/JSON form.
 - Project audit command and GitHub CI audit step.
 
-These additions strengthen the project for card-risk reporting roles by showing not only modeling and reporting outputs, but also reconciliation, operating-threshold analysis, scenario-assumption robustness, and repository-level reproducibility.
+These checks document reconciliation, review-capacity sensitivity, scenario robustness, and reproducibility beyond the baseline model evaluation.

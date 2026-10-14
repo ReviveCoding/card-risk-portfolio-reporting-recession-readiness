@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import pandas as pd
 
 ROOT = Path(".")
@@ -66,11 +66,11 @@ best = op.sort_values(["avg_brier", "retrain_events"], ascending=[True, True]).i
 quarterly = op[op["policy"] == "quarterly_retrain"].iloc[0]
 
 summary_df = pd.DataFrame(rows)
-summary_df.to_csv(OUT / "resume_evidence_metrics.csv", index=False)
+summary_df.to_csv(OUT / "model_comparison_metrics.csv", index=False)
 
 report = []
-report.append("# Resume Evidence Summary\n")
-report.append("This report summarizes baseline-vs-specialty improvements for resume and interview use. All claims are bounded to offline synthetic/public-benchmark-aligned data.\n")
+report.append("# Model Comparison and Operating Evaluation\n")
+report.append("This report compares model baselines, review routing, and retraining policies under offline evaluation. All claims are bounded to offline synthetic/public-benchmark-aligned data.\n")
 
 report.append("## Model Ablation: Baseline vs Card-Risk Specialty Method\n")
 report.append(summary_df[summary_df["section"]=="model_ablation"].round(4).to_markdown(index=False))
@@ -90,25 +90,13 @@ report.append(
     f"with only {int(quarterly['retrain_events'])} retraining events across the 6-month holdout."
 )
 
-report.append("\n\n## Resume-Safe Bullets\n")
-report.append(
-    "\n- Built a SQL-first card-risk reporting and recession-readiness framework with segment-conditioned roll-rate modeling, "
-    "public benchmark alignment, SQL/Python reconciliation, and review-capacity routing; improved PR-AUC from 0.332 to 0.894, "
-    "ROC-AUC from 0.692 to 0.982, and top-10% default capture from 0.214 to 0.965 versus a logistic baseline under synthetic/offline validation."
-)
-report.append(
-    "\n- Added ARBC review routing and operational backtesting over a 10,000-account synthetic card portfolio, improving 10% review-capacity F1 "
-    "from 0.347 to 0.697 and precision from 0.210 to 0.536 while maintaining 0.994 risk-capture recall."
-)
-report.append(
-    "\n- Compared static, quarterly, and drift-triggered retraining in an 18-month train / 6-month holdout backtest, selecting quarterly retraining "
-    f"as the practical operating policy with avg PR-AUC {quarterly['avg_pr_auc']:.3f}, avg ROC-AUC {quarterly['avg_roc_auc']:.3f}, and only {int(quarterly['retrain_events'])} retraining events."
-)
+report.append("\n\n## Interpretation and Limitations\n")
+report.append("Model and policy comparisons are offline, synthetic or public-benchmark-aligned. Residual correction is not uniformly better across metrics; operational results are not deployed outcomes.")
 
 report.append("\n\n## Claim Boundary\n")
 report.append("Use synthetic/offline/public-benchmark-aligned wording. Do not imply production JPMC data, real cardholder data, proprietary bureau microdata, or deployed banking decisioning.")
 
-(REP / "resume_evidence_summary.md").write_text("\n".join(report), encoding="utf-8")
+(REP / "model_comparison_summary.md").write_text("\n".join(report), encoding="utf-8")
 
-print("Saved outputs/resume_evidence_metrics.csv")
-print("Saved reports/resume_evidence_summary.md")
+print("Saved outputs/model_comparison_metrics.csv")
+print("Saved reports/model_comparison_summary.md")
