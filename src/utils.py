@@ -1,19 +1,20 @@
 from __future__ import annotations
+
 from pathlib import Path
-import yaml
-import pandas as pd
+
 import numpy as np
+import pandas as pd
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_yaml(rel_path: str) -> dict:
-    with open(ROOT / rel_path, 'r', encoding='utf-8') as f:
-        return yaml.safe_load(f)
+    return yaml.safe_load((ROOT / rel_path).read_text(encoding="utf-8"))
 
 
 def ensure_dirs() -> None:
-    for p in ['data/public_raw','data/synthetic','data/processed','outputs','figures','reports']:
+    for p in ("data/public_raw", "data/synthetic", "data/processed", "outputs", "figures", "reports"):
         (ROOT / p).mkdir(parents=True, exist_ok=True)
 
 
@@ -52,6 +53,9 @@ def ece_score(y_true, y_prob, bins: int = 10) -> float:
 def top_capture(y_true, y_prob, rate: float = 0.10) -> tuple[float, float]:
     y_true = np.asarray(y_true)
     y_prob = np.asarray(y_prob)
+    if y_prob.size == 0:
+        return 0.0, 0.0
+
     k = max(1, int(len(y_prob) * rate))
     idx = np.argsort(-y_prob)[:k]
     precision = float(y_true[idx].mean()) if k else 0.0
