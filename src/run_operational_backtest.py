@@ -1,8 +1,7 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,7 +12,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import average_precision_score, brier_score_loss, roc_auc_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PROCESSED = ROOT / "data" / "processed"
@@ -27,7 +25,7 @@ def _ensure_dirs() -> None:
         p.mkdir(parents=True, exist_ok=True)
 
 
-def _find_col(df: pd.DataFrame, candidates: List[str]) -> str | None:
+def _find_col(df: pd.DataFrame, candidates: list[str]) -> str | None:
     lower = {c.lower(): c for c in df.columns}
     for cand in candidates:
         if cand.lower() in lower:
@@ -48,7 +46,7 @@ def _load_mart() -> pd.DataFrame:
     )
 
 
-def _normalize_month(df: pd.DataFrame) -> Tuple[pd.DataFrame, str]:
+def _normalize_month(df: pd.DataFrame) -> tuple[pd.DataFrame, str]:
     month_col = _find_col(
         df,
         [
@@ -119,7 +117,9 @@ def _build_target(df: pd.DataFrame) -> pd.DataFrame:
         ],
     )
     if existing_target is not None:
-        df["_op_target"] = pd.to_numeric(df[existing_target], errors="coerce").fillna(0).astype(int)
+        df["_op_target"] = (
+            pd.to_numeric(df[existing_target], errors="coerce").fillna(0).astype(int)
+        )
         return df[df["_op_target"].isin([0, 1])].copy()
 
     acct_col = _find_col(df, ["account_id", "customer_id", "acct_id"])
@@ -144,20 +144,28 @@ def _build_target(df: pd.DataFrame) -> pd.DataFrame:
         tmp["_op_target"] = tmp["_op_target"].astype(int)
         return tmp
 
-    chargeoff_col = _find_col(df, ["chargeoff_proxy", "charge_off_proxy", "chargeoff_flag"])
+    chargeoff_col = _find_col(
+        df, ["chargeoff_proxy", "charge_off_proxy", "chargeoff_flag"]
+    )
     if chargeoff_col is not None:
-        df["_op_target"] = (pd.to_numeric(df[chargeoff_col], errors="coerce").fillna(0) > 0).astype(int)
+        df["_op_target"] = (
+            pd.to_numeric(df[chargeoff_col], errors="coerce").fillna(0) > 0
+        ).astype(int)
         return df
 
     dq30_col = _find_col(df, ["dq30_plus_flag", "dq30_plus", "is_dq30_plus"])
     if dq30_col is not None:
-        df["_op_target"] = (pd.to_numeric(df[dq30_col], errors="coerce").fillna(0) > 0).astype(int)
+        df["_op_target"] = (
+            pd.to_numeric(df[dq30_col], errors="coerce").fillna(0) > 0
+        ).astype(int)
         return df
 
-    raise ValueError("Could not infer operational target. Need a default/DQ/chargeoff label column.")
+    raise ValueError(
+        "Could not infer operational target. Need a default/DQ/chargeoff label column."
+    )
 
 
-def _feature_columns(df: pd.DataFrame) -> Tuple[List[str], List[str]]:
+def _feature_columns(df: pd.DataFrame) -> tuple[list[str], list[str]]:
     banned_keywords = [
         "target",
         "default",
@@ -184,7 +192,14 @@ def _feature_columns(df: pd.DataFrame) -> Tuple[List[str], List[str]]:
             continue
         if any(k == lc for k in id_like):
             continue
-        if lc in ["month", "report_month", "snapshot_month", "as_of_month", "period", "quarter"]:
+        if lc in [
+            "month",
+            "report_month",
+            "snapshot_month",
+            "as_of_month",
+            "period",
+            "quarter",
+        ]:
             continue
         cols.append(c)
 
@@ -201,7 +216,7 @@ def _feature_columns(df: pd.DataFrame) -> Tuple[List[str], List[str]]:
     return numeric_cols, categorical_cols
 
 
-def _build_model(numeric_cols: List[str], categorical_cols: List[str]) -> Pipeline:
+def _build_model(numeric_cols: list[str], categorical_cols: list[str]) -> Pipeline:
     numeric_pipe = Pipeline(
         steps=[
             ("imputer", SimpleImputer(strategy="median")),
@@ -233,7 +248,7 @@ def _build_model(numeric_cols: List[str], categorical_cols: List[str]) -> Pipeli
     return Pipeline(steps=[("preprocess", pre), ("model", clf)])
 
 
-def _safe_metrics(y_true: np.ndarray, score: np.ndarray) -> Dict[str, float]:
+def _safe_metrics(y_true: np.ndarray, score: np.ndarray) -> dict[str, float]:
     out = {}
     if len(np.unique(y_true)) < 2:
         out["roc_auc"] = np.nan
@@ -245,7 +260,9 @@ def _safe_metrics(y_true: np.ndarray, score: np.ndarray) -> Dict[str, float]:
     return out
 
 
-def _review_metrics(y_true: np.ndarray, score: np.ndarray, capacity: float) -> Dict[str, float]:
+def _review_metrics(
+    y_true: np.ndarray, score: np.ndarray, capacity: float
+) -> dict[str, float]:
     n = len(y_true)
     k = max(1, int(round(n * capacity)))
     idx = np.argsort(-score)[:k]
@@ -291,7 +308,9 @@ def _psi(expected: np.ndarray, actual: np.ndarray, bins: int = 10) -> float:
     return float(np.sum((a_pct - e_pct) * np.log(a_pct / e_pct)))
 
 
-def _max_feature_psi(train_ref: pd.DataFrame, current: pd.DataFrame, numeric_cols: List[str]) -> float:
+def _max_feature_psi(
+    train_ref: pd.DataFrame, current: pd.DataFrame, numeric_cols: list[str]
+) -> float:
     values = []
     for c in numeric_cols[:25]:
         if c in train_ref.columns and c in current.columns:
@@ -301,8 +320,12 @@ def _max_feature_psi(train_ref: pd.DataFrame, current: pd.DataFrame, numeric_col
 
 def _stress_weight(df: pd.DataFrame) -> np.ndarray:
     util_col = _find_col(df, ["utilization", "utilization_rate", "credit_utilization"])
-    bureau_col = _find_col(df, ["bureau_stress_proxy", "bureau_stress", "external_utilization"])
-    pay_col = _find_col(df, ["payment_to_balance_ratio", "payment_rate", "payment_ratio"])
+    bureau_col = _find_col(
+        df, ["bureau_stress_proxy", "bureau_stress", "external_utilization"]
+    )
+    pay_col = _find_col(
+        df, ["payment_to_balance_ratio", "payment_rate", "payment_ratio"]
+    )
 
     stress = np.ones(len(df))
     if util_col:
@@ -320,12 +343,12 @@ def _stress_weight(df: pd.DataFrame) -> np.ndarray:
 def _fit_score_policy(
     policy: str,
     df: pd.DataFrame,
-    months: List[str],
-    test_months: List[str],
-    numeric_cols: List[str],
-    categorical_cols: List[str],
+    months: list[str],
+    test_months: list[str],
+    numeric_cols: list[str],
+    categorical_cols: list[str],
     psi_threshold: float,
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     monthly_rows = []
     pred_rows = []
 
@@ -349,13 +372,21 @@ def _fit_score_policy(
             retrain = True
             reason = "quarterly_schedule"
         elif policy == "drift_triggered":
-            current_psi = _max_feature_psi(train_ref, current, numeric_cols) if train_ref is not None else 0.0
+            current_psi = (
+                _max_feature_psi(train_ref, current, numeric_cols)
+                if train_ref is not None
+                else 0.0
+            )
             if current_psi >= psi_threshold:
                 retrain = True
                 reason = f"psi_{current_psi:.3f}"
                 drift_trigger_count += 1
 
-        current_psi_for_log = _max_feature_psi(train_ref, current, numeric_cols) if train_ref is not None else 0.0
+        current_psi_for_log = (
+            _max_feature_psi(train_ref, current, numeric_cols)
+            if train_ref is not None
+            else 0.0
+        )
 
         if retrain:
             if train["_op_target"].nunique() < 2:
@@ -394,7 +425,9 @@ def _fit_score_policy(
     return pd.DataFrame(monthly_rows), pd.concat(pred_rows, ignore_index=True)
 
 
-def run_operational_backtest(train_months: int, test_months: int, psi_threshold: float) -> None:
+def run_operational_backtest(
+    train_months: int, test_months: int, psi_threshold: float
+) -> None:
     _ensure_dirs()
 
     df = _load_mart()
@@ -408,7 +441,7 @@ def run_operational_backtest(train_months: int, test_months: int, psi_threshold:
             f"Need at least {train_months + test_months} months, found {len(months)}."
         )
 
-    selected_months = months[-(train_months + test_months):]
+    selected_months = months[-(train_months + test_months) :]
     test_ms = selected_months[-test_months:]
     df = df[df[month_col].isin(selected_months)].copy()
 
@@ -486,7 +519,10 @@ def run_operational_backtest(train_months: int, test_months: int, psi_threshold:
     plt.close()
 
     plt.figure(figsize=(9, 5))
-    plot_df = review_df[(review_df["score_policy"] == "score") & (review_df["capacity_rate"].isin([0.05, 0.10, 0.15, 0.20]))]
+    plot_df = review_df[
+        (review_df["score_policy"] == "score")
+        & (review_df["capacity_rate"].isin([0.05, 0.10, 0.15, 0.20]))
+    ]
     for policy in policies:
         p = plot_df[plot_df["policy"] == policy]
         plt.plot(p["capacity_rate"], p["risk_review_f1"], marker="o", label=policy)
@@ -517,7 +553,9 @@ def run_operational_backtest(train_months: int, test_months: int, psi_threshold:
         "This is an offline operational simulation using synthetic account-level data and public benchmark-aligned reporting artifacts. "
         "It is not a production bank deployment, not real bureau microdata, and not proprietary cardholder data.\n"
     )
-    (REPORTS / "operational_backtest_report.md").write_text("\n".join(report), encoding="utf-8")
+    (REPORTS / "operational_backtest_report.md").write_text(
+        "\n".join(report), encoding="utf-8"
+    )
 
     print("Operational backtest complete.")
     print(f"Saved {OUTPUTS / 'operational_backtest_monthly.csv'}")
