@@ -1,5 +1,6 @@
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
 import pandas as pd
 import plotly.express as px
 from plotly.io import to_html
@@ -13,12 +14,14 @@ DASH_DIR.mkdir(parents=True, exist_ok=True)
 HTML_OUT = DASH_DIR / "card_risk_portfolio_dashboard.html"
 MD_OUT = REPORTS / "card_risk_dashboard_artifact.md"
 
+
 def read_csv(path):
     path = Path(path)
     if path.exists():
         return pd.read_csv(path)
     print(f"[WARN] Missing {path}")
     return pd.DataFrame()
+
 
 def find_col(df, names):
     if df.empty:
@@ -33,8 +36,10 @@ def find_col(df, names):
                 return c
     return None
 
+
 def fig_html(title, fig):
     return f"<section><h2>{title}</h2>{to_html(fig, full_html=False, include_plotlyjs=False)}</section>"
+
 
 def metric_card(label, value):
     return f"""
@@ -44,11 +49,13 @@ def metric_card(label, value):
     </div>
     """
 
+
 def fmt(x, digits=3):
     try:
         return f"{float(x):.{digits}f}"
     except Exception:
         return str(x)
+
 
 def get_exact_arbc_row(review_df):
     if review_df.empty:
@@ -63,20 +70,29 @@ def get_exact_arbc_row(review_df):
     cap_num = pd.to_numeric(review_df[cap], errors="coerce")
     r10 = review_df[cap_num.between(0.095, 0.105)].copy()
 
-    exact = r10[r10[strategy].astype(str).str.lower().eq("asymmetric_risk_boundary_correction")]
+    exact = r10[
+        r10[strategy].astype(str).str.lower().eq("asymmetric_risk_boundary_correction")
+    ]
     if not exact.empty:
         return exact.iloc[0]
 
-    contains_asym = r10[r10[strategy].astype(str).str.contains("asymmetric", case=False, regex=False)]
+    contains_asym = r10[
+        r10[strategy].astype(str).str.contains("asymmetric", case=False, regex=False)
+    ]
     if not contains_asym.empty:
         return contains_asym.iloc[0]
 
     return pd.Series(dtype="object")
 
+
 def add_metric_from_evidence(metrics, evidence_df, metric_name, label=None):
     if evidence_df.empty:
         return False
-    if "section" not in evidence_df.columns or "metric" not in evidence_df.columns or "method_value" not in evidence_df.columns:
+    if (
+        "section" not in evidence_df.columns
+        or "metric" not in evidence_df.columns
+        or "method_value" not in evidence_df.columns
+    ):
         return False
     rows = evidence_df[
         (evidence_df["section"].astype(str) == "review_routing_10pct")
@@ -86,6 +102,7 @@ def add_metric_from_evidence(metrics, evidence_df, metric_name, label=None):
         return False
     metrics.append((label or metric_name, fmt(rows.iloc[0]["method_value"])))
     return True
+
 
 ablation = read_csv(OUT / "model_ablation_summary.csv")
 review = read_csv(OUT / "review_capacity_sensitivity.csv")
@@ -106,16 +123,30 @@ if not ablation.empty:
     if version:
         metric_cols = [c for c in [pr, roc, capture, brier] if c]
         if metric_cols:
-            melted = ablation[[version] + metric_cols].melt(id_vars=version, var_name="metric", value_name="value")
+            melted = ablation[[version] + metric_cols].melt(
+                id_vars=version, var_name="metric", value_name="value"
+            )
             fig = px.bar(
-                melted, x=version, y="value", color="metric", barmode="group",
-                title="Model Ablation: Baseline vs Card-Risk Specialty Method"
+                melted,
+                x=version,
+                y="value",
+                color="metric",
+                barmode="group",
+                title="Model Ablation: Baseline vs Card-Risk Specialty Method",
             )
             fig.update_layout(xaxis_tickangle=-20)
             sections.append(fig_html("Model Ablation", fig))
 
-        base = ablation[ablation[version].astype(str).str.contains("M0|Logistic", case=False, regex=True)]
-        spec = ablation[ablation[version].astype(str).str.contains("M4|Segment", case=False, regex=True)]
+        base = ablation[
+            ablation[version]
+            .astype(str)
+            .str.contains("M0|Logistic", case=False, regex=True)
+        ]
+        spec = ablation[
+            ablation[version]
+            .astype(str)
+            .str.contains("M4|Segment", case=False, regex=True)
+        ]
         if not base.empty and not spec.empty:
             b = base.iloc[0]
             s = spec.iloc[0]
@@ -124,7 +155,12 @@ if not ablation.empty:
             if roc:
                 metrics.append(("ROC-AUC", f"{fmt(b[roc])} -> {fmt(s[roc])}"))
             if capture:
-                metrics.append(("Top-10% Default Capture", f"{fmt(b[capture])} -> {fmt(s[capture])}"))
+                metrics.append(
+                    (
+                        "Top-10% Default Capture",
+                        f"{fmt(b[capture])} -> {fmt(s[capture])}",
+                    )
+                )
 
 # Review capacity
 if not review.empty:
@@ -137,15 +173,25 @@ if not review.empty:
     if cap and strategy:
         for metric in [m for m in [f1, precision, recall] if m]:
             fig = px.line(
-                review, x=cap, y=metric, color=strategy, markers=True,
-                title=f"Review Capacity Tradeoff: {metric}"
+                review,
+                x=cap,
+                y=metric,
+                color=strategy,
+                markers=True,
+                title=f"Review Capacity Tradeoff: {metric}",
             )
             sections.append(fig_html(f"Review Capacity: {metric}", fig))
 
         # Prefer model_comparison_metrics.csv because it stores the validated ARBC comparison.
-        added_f1 = add_metric_from_evidence(metrics, evidence, "Risk-Review F1", "10% Review F1")
-        added_precision = add_metric_from_evidence(metrics, evidence, "Review Precision", "10% Review Precision")
-        added_recall = add_metric_from_evidence(metrics, evidence, "Risk Capture Recall", "Risk-Capture Recall")
+        added_f1 = add_metric_from_evidence(
+            metrics, evidence, "Risk-Review F1", "10% Review F1"
+        )
+        added_precision = add_metric_from_evidence(
+            metrics, evidence, "Review Precision", "10% Review Precision"
+        )
+        added_recall = add_metric_from_evidence(
+            metrics, evidence, "Risk Capture Recall", "Risk-Capture Recall"
+        )
 
         # Fallback to exact ARBC row only. Do not match inflated_risk_boundary.
         arbc = get_exact_arbc_row(review)
@@ -168,10 +214,16 @@ if not op.empty:
     if policy:
         metric_cols = [c for c in [pr, roc, brier, retrains] if c]
         if metric_cols:
-            melted = op[[policy] + metric_cols].melt(id_vars=policy, var_name="metric", value_name="value")
+            melted = op[[policy] + metric_cols].melt(
+                id_vars=policy, var_name="metric", value_name="value"
+            )
             fig = px.bar(
-                melted, x=policy, y="value", color="metric", barmode="group",
-                title="Operational Backtest: Retraining Policy Comparison"
+                melted,
+                x=policy,
+                y="value",
+                color="metric",
+                barmode="group",
+                title="Operational Backtest: Retraining Policy Comparison",
             )
             fig.update_layout(xaxis_tickangle=-15)
             sections.append(fig_html("Retraining Policy", fig))
@@ -196,15 +248,23 @@ inventory_paths = [
     REPORTS / "operational_backtest_report.md",
     REPORTS / "card_risk_dashboard_artifact.md",
 ]
-inventory = pd.DataFrame([
-    {
-        "artifact": str(p).replace("\\", "/"),
-        "status": "FOUND" if p.exists() else "MISSING",
-        "size_kb": round(p.stat().st_size / 1024, 1) if p.exists() else 0,
-    }
-    for p in inventory_paths
-])
-fig = px.bar(inventory, x="artifact", y="size_kb", color="status", title="Validation and Reporting Artifact Inventory")
+inventory = pd.DataFrame(
+    [
+        {
+            "artifact": str(p).replace("\\", "/"),
+            "status": "FOUND" if p.exists() else "MISSING",
+            "size_kb": round(p.stat().st_size / 1024, 1) if p.exists() else 0,
+        }
+        for p in inventory_paths
+    ]
+)
+fig = px.bar(
+    inventory,
+    x="artifact",
+    y="size_kb",
+    color="status",
+    title="Validation and Reporting Artifact Inventory",
+)
 fig.update_layout(xaxis_tickangle=-35)
 sections.append(fig_html("Artifact Inventory", fig))
 
@@ -249,7 +309,7 @@ html = f"""<!DOCTYPE html>
   </div>
   <h2>Executive KPI Summary</h2>
   <div class="metric-grid">{metric_html}</div>
-  {''.join(sections)}
+  {"".join(sections)}
   <div class="footer">Generated on {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.</div>
 </body>
 </html>
